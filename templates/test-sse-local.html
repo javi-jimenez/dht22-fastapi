@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1280, initial-scale=1.0">
+    <title>Test SSE</title>
+</head>
+<body>
+
+<div id="list"></div>
+
+<script>
+    const evtSource = new EventSource("http://127.0.0.1:8000/sse", {
+        withCredentials: true,
+    });
+</script>
+
+<script>
+    evtSource.onmessage = (event) => {
+        const newElement = document.createElement("li");
+        const eventList = document.getElementById("list");
+
+        newElement.textContent = `message: ${event.data}`;
+        eventList.appendChild(newElement);
+
+        // console.log(event.data)
+    };
+
+</script>
+
+</body>
+</html>
