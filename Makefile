@@ -4,6 +4,10 @@ include .env
 
 all: docker
 
+upgrade:
+	# pip install pip-upgrader
+	pip install --upgrade -r requirements.txt
+
 run:
 	uvicorn dht22_fastapi.dht22_fastapi:app --reload
 
